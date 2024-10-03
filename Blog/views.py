@@ -9,20 +9,30 @@ def blogHome(request):
     allposts = Post.objects.all()
     context={'allposts':allposts}
     return render(request,'blog/blogHome.html',context)
-def blogPost(request,slug):
+def blogPost(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    user=request.user
-    comments=BlogComment.objects.filter(post=post,parent=None)
-    replies=BlogComment.objects.filter(post=post).exclude(parent=None)
-    # Create a dictionary to map replies to their parent comments
+    user = request.user
+
+    # Retrieve top-level comments (parent=None) and replies (not parent=None)
+    comments = BlogComment.objects.filter(post=post, parent=None)
+    replies = BlogComment.objects.filter(post=post).exclude(parent=None)
+
+    # Create a dictionary mapping parent comment's `sno` to its replies
     reply_dict = {}
     for reply in replies:
         if reply.parent.sno not in reply_dict:
             reply_dict[reply.parent.sno] = [reply]
         else:
             reply_dict[reply.parent.sno].append(reply)
-    context={'post':post,'comments':comments,'user':user,'replies':reply_dict}
-    return render(request,'blog/blogPost.html',context)
+
+    context = {
+        'post': post,
+        'comments': comments,
+        'replies': reply_dict,  # Make sure this is passed correctly
+        'user': user
+    }
+
+    return render(request, 'blog/blogPost.html', context)
 
 def postComment(request):
     if request.method == 'POST':
