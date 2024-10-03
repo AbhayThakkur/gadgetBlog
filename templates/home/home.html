@@ -1,0 +1,63 @@
+{% extends "basic.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+{% block homeactive %}active{% endblock homeactive%}
+{% block css %}
+<link href="static/home.css" rel="stylesheet">
+{% endblock css %}
+{% block body %}
+
+<div class="mb-0">
+    {% if messages %}
+    <div class>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<div class="card text-center mt-5 custom-card">
+    <div class="card-header">
+        Latest Blog
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to
+            additional content.</p>
+        <a href="blog/" class="btn btn-primary go">Go to Blog</a>
+    </div>
+    <div class="card-footer text-body-secondary">
+        2 days ago
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        {% for post in allposts %}
+        <div class="col-12">
+            <div class="card blog-card h-100 ">
+                <div class="row g-0">
+                    <div class="col-md-7 d-flex flex-column p-4">
+                        <strong class="d-inline-block mb-2 text-primary">Article by {{ post.author }}</strong>
+                        <h3 class="mb-0">{{ post.title }}</h3>
+                        <div class="mb-1 text-muted">{{ post.updated_at }}</div>
+                        <p class="card-text mb-auto">{{ post.content|truncatechars:200 }}</p>
+                        <a href="blog/" class="stretched-link btn btn-primary">
+                            Continue reading
+                        </a>
+                    </div>
+                    <div class="col-md-5 d-none d-md-block">
+                        <img class='w-100 p-2' src="{{ post.image.url }}" alt="post image" class="img-fluid img-field">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> 
+
+{% endblock body %}

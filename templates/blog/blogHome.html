@@ -1,0 +1,38 @@
+{% extends "basic.html" %}
+{% load static %}
+
+{% block title %}Blog{% endblock title %}
+{% block blogactive %}active{% endblock blogactive%}
+{% block css %}
+<link href="static/bloghome.css" rel="stylesheet">
+{% endblock css %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="row">
+        {% for post in allposts %}
+        <div class="col-12">
+            <div class="card blog-card h-100 ">
+                <div class="row g-0">
+                    <div class="col-md-7 d-flex flex-column p-4">
+                        <strong class="d-inline-block mb-2 text-primary">Article by {{ post.author }}</strong>
+                        <h3 class="mb-0">{{ post.title }}</h3>
+                        <div class="mb-1 text-muted">{{ post.updated_at }}</div>
+                        <p class="card-text mb-auto">{{ post.content|truncatechars:200 }}</p>
+                        <a href="{{post.slug}}" class="stretched-link btn btn-primary">
+                            Continue reading
+                        </a>
+                    </div>
+                    <div class="col-md-5 d-none d-md-block">
+                        <img class='w-100 p-2' src="{{ post.image.url }}" alt="post image" class="img-fluid img-field">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> 
+
+
+{% endblock body %}
