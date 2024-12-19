@@ -27,7 +27,7 @@ admin.site.site_title='gadgetBlog Admin Panel'
 admin.site.index_title='Welcome to gadgetBlog Admin Panel'
 
 urlpatterns = [
-    path('https://gadgetblog.onrender.com/admin/', admin.site.urls),
+    path('gadgetblog.onrender.com/admin/', admin.site.urls),
     path('', homeViews.home,name="home"),
     path('about/', homeViews.about,name="about"),
     path('writer/', homeViews.writer,name="writer"),
