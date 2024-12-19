@@ -19,6 +19,8 @@ from django.urls import path,include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from Home import views as homeViews
+from Blog import views as blogViews
 
 admin.site.site_header ='gadgetBlog Admin'
 admin.site.site_title='gadgetBlog Admin Panel'
@@ -26,9 +28,18 @@ admin.site.index_title='Welcome to gadgetBlog Admin Panel'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Home.urls')),
-    path('blog/', include('Blog.urls')),
-
+    path('', homeViews.home,name="home"),
+    path('about/', homeViews.about,name="about"),
+    path('writer/', homeViews.writer,name="writer"),
+    path('contact/', homeViews.contact,name="contact"),
+    path('search/', homeViews.search,name="search"),
+    path('signUp/', homeViews.handelSignup,name='handelSignup'),
+    path('login/', homeViews.handellogin,name='handellogin'),
+    path('logout/', homeViews.handellogout,name='handellogout'),
+    path('blog/', blogViews.blogHome,name="blogHome"),
+    path('<slug:slug>', blogViews.blogPost, name='blogDetail'),
+    path('postComment/',blogViews.postComment,name='postComment')
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

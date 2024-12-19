@@ -15,6 +15,9 @@ def home(request):
 def about(request):
     return render(request, 'home/about.html')
 
+def writer(request):
+    return render(request, 'home/writer.html')
+
 def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')
