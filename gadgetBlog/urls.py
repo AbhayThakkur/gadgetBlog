@@ -37,7 +37,7 @@ urlpatterns = [
     path('login/', homeViews.handellogin,name='handellogin'),
     path('logout/', homeViews.handellogout,name='handellogout'),
     path('blog/', blogViews.blogHome,name="blogHome"),
-    path('<slug:slug>', blogViews.blogPost, name='blogDetail'),
+    path('blog/<slug:slug>', blogViews.blogPost, name='blogDetail'),
     path('postComment/',blogViews.postComment,name='postComment')
     
 ]
