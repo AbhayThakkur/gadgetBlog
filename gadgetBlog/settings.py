@@ -149,3 +149,9 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 APPEND_SLASH = False
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
