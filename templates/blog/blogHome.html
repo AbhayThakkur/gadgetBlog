@@ -23,8 +23,8 @@
                     </div>
                     <!-- Content Section -->
                     <div class="col-md-8 d-flex flex-column p-3">
-                        <strong class="d-inline-block mb-2 text-primary">Article by {{ post.author }}</strong>
                         <h3 class="mb-3">{{ post.title }}</h3>
+                        <strong class="d-inline-block mb-2 text-primary">Article by {{ post.author }}</strong>
                         <div class="mb-2 text-muted">{{ post.updated_at }}</div>
                         <p class="card-text mb-4">{{ post.content|truncatechars:200 }}</p>
                         <a href="{{ post.slug }}" class="btn btn-primary align-self-start">
