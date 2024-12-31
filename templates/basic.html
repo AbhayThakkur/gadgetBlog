@@ -114,28 +114,31 @@
                             href="{% url "contact" %}">Contact</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" method="get" action="/search">
+                <form class="d-flex" role="search" method="get" action="{% url 'search' %}">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search"
                         id="search" />
                     <button class="btn btn-outline-success mx-3" type="submit">
                         Search
                     </button>
                 </form>
-                <form action='/logout/' method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success mx-1">
-                        LogOut
-                    </button>
+                
+                {% if user.is_authenticated %}
+                <!-- Show the logout form if the user is authenticated -->
+                <form action='{% url "handellogout" %}' method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success mx-1">
+                    LogOut
+                </button>
                 </form>
-                <!-- Button For signUp modal -->
+                {% else %}
+                <!-- Show the signup and login buttons if the user is not authenticated -->
                 <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#signUpModal">
                     SignUp
                 </button>
-                <!-- Button For login modal -->
                 <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login
                 </button>
-
+            {% endif %}
             </div>
         </div>
     </nav>
