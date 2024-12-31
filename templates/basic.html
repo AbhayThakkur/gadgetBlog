@@ -80,7 +80,6 @@
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" name='loginpassword' id="loginpassword" />
                         </div>
-
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                     <hr>
@@ -122,14 +121,12 @@
                         Search
                     </button>
                 </form>
-                {% if user.is_authenticated %}
                 <form action='/logout/' method="post" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-success mx-1">
                         LogOut
                     </button>
                 </form>
-                {% else %}
                 <!-- Button For signUp modal -->
                 <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#signUpModal">
                     SignUp
@@ -138,7 +135,6 @@
                 <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login
                 </button>
-                {% endif %}
 
             </div>
         </div>
