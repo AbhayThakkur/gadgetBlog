@@ -35,7 +35,7 @@
             <div>
                 <h1>{{ comments|length }}&nbsp;&nbsp;Comments</h1>
                 {% if user.is_authenticated %}
-                <form action="postComment/" method="post">
+                <form action="{% url 'postComment' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="exampleInputEmail1">Post Comment</label>
@@ -52,7 +52,7 @@
                 {% for comment in comments %}
                 <div class="row my-3 comment-bg">
                     <div class="col-md-1">
-                        <img class="img-field rounded m-2" width="30vw" height="auto" src="{% static 'user.png' %}"
+                        <img class="img-field rounded m-2" width="30vw" height="auto" src="{% static 'blog/user.png' %}"
                             alt="user" />
                     </div>
                     <div class="col-md-11">

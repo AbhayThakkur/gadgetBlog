@@ -1,14 +1,14 @@
 {% extends "basic.html" %}
-{% load static %}
 {% block title %}About{% endblock title %}
 {% block aboutactive %}active{% endblock aboutactive%}
+{% load static %}
 {% block body %}
 <header class="bg-primary text-white text-center py-4">
     <h1>About Abhay Thakur</h1>
 </header>
 
 <div class="container mt-5 text-center">
-    <img src="writer.jpg" class="rounded-circle mb-3" alt="Abhay Thakur" width="200" height="200">
+    <img src="{% static "blog/writer.jpg" %}" class="rounded-circle mb-3" alt="Abhay Thakur" width="200" height="200">
     <h2>Abhay Thakur</h2>
     <p>Full-stack developer, Python enthusiast, and AI learner. Passionate about technology and innovation.</p>
 

@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n9ekxx7x+kth6ljn7fdk2wyn8zyj*n1x+)0zj69fxpd!2c9^7@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['gadgetblog.onrender.com', 'https://gadgetblog.onrender.com/','*']
 
@@ -136,9 +136,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files configuration
 STATIC_URL = '/static/'
 STATIC_ROOT = [
-            os.path.join(BASE_DIR, 'static/'),
             os.path.join(BASE_DIR, 'static/home'),
-            os.path.join(BASE_DIR, 'static/blog')   
+            os.path.join(BASE_DIR, 'static/blog'),
         ]
 
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
