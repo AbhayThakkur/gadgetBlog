@@ -83,14 +83,21 @@ WSGI_APPLICATION = 'gadgetBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'gadgetblog',
+#         'USER': 'root',
+#         'PASSWORD': 'mysql',
+#         'HOST': '127.0.0.1',  # Or your server's IP
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gadgetblog',
-        'USER': 'root',
-        'PASSWORD': 'mysql',
-        'HOST': '127.0.0.1',  # Or your server's IP
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Path to the SQLite database file
     }
 }
 
