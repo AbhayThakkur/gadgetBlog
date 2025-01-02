@@ -122,7 +122,7 @@
                     </button>
                 </form>
                 
-                {% comment %} {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                 <!-- Show the logout form if the user is authenticated -->
                 <form action='{% url "handellogout" %}' method="post" style="display: inline;">
                 {% csrf_token %}
@@ -138,7 +138,7 @@
                 <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login
                 </button>
-                {% endif %} {% endcomment %}
+                {% endif %}
             </div>
         </div>
     </nav>
