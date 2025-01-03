@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 import dj_database_url
+from decouple import config
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -26,12 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n9ekxx7x+kth6ljn7fdk2wyn8zyj*n1x+)0zj69fxpd!2c9^7@'
+# SECRET_KEY = 'django-insecure-n9ekxx7x+kth6ljn7fdk2wyn8zyj*n1x+)0zj69fxpd!2c9^7@'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['gadgetblog.onrender.com', 'https://gadgetblog.onrender.com/','*']
+# ALLOWED_HOSTS = ['gadgetblog.onrender.com', 'https://gadgetblog.onrender.com/','*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -44,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'dj_database_url',
     'Home',
     'Blog',
 ]
@@ -97,16 +99,8 @@ DATABASES = {
     }
 }
 
-# Get the DATABASE_URL from environment variable and decode if needed
-database_url = os.environ.get('postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a.oregon-postgres.render.com/gadgetblog_postgresql')
+DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'))
 
-# If database_url is in bytes, decode it to string
-if isinstance(database_url, bytes):
-    database_url = database_url.decode('utf-8')
-
-# Parse the database URL
-DATABASES['default'] = dj_database_url.parse('postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a.oregon-postgres.render.com/gadgetblog_postgresql')
-    
 # postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a.oregon-postgres.render.com/gadgetblog_postgresql
 
 # Password validation
