@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n9ekxx7x+kth6ljn7fdk2wyn8zyj*n1x+)0zj69fxpd!2c9^7@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DBUG', 'False').lower()=="true"
+DEBUG = True
 
 ALLOWED_HOSTS = ['gadgetblog.onrender.com', 'https://gadgetblog.onrender.com/','*']
 
@@ -97,6 +97,8 @@ DATABASES = {
 }
 
 DATABASES['default']= dj_database_url.parse('postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a.oregon-postgres.render.com/gadgetblog_postgresql')
+
+DATABASES_URL="postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a/gadgetblog_postgresql"
 
 # postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a.oregon-postgres.render.com/gadgetblog_postgresql
 
