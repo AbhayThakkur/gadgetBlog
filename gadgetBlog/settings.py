@@ -26,12 +26,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n9ekxx7x+kth6ljn7fdk2wyn8zyj*n1x+)0zj69fxpd!2c9^7@'
+# SECRET_KEY = 'django-insecure-n9ekxx7x+kth6ljn7fdk2wyn8zyj*n1x+)0zj69fxpd!2c9^7@'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False').lower() == "true"
 
-ALLOWED_HOSTS = ['gadgetblog.onrender.com', 'https://gadgetblog.onrender.com/','*']
+# ALLOWED_HOSTS = ['gadgetblog.onrender.com', 'https://gadgetblog.onrender.com/','*']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split()
 
 
 # Application definition
@@ -96,10 +98,16 @@ DATABASES = {
     }
 }
 
-DATABASES['default']= dj_database_url.parse('postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a.oregon-postgres.render.com/gadgetblog_postgresql')
+# Get the DATABASE_URL from environment variable and decode if needed
+database_url = os.environ.get('DATABASE_URL', '')
 
-DATABASES_URL="postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a/gadgetblog_postgresql"
+# If database_url is in bytes, decode it to string
+if isinstance(database_url, bytes):
+    database_url = database_url.decode('utf-8')
 
+# Parse the database URL
+DATABASES['default'] = dj_database_url.parse(database_url)
+    
 # postgresql://gadgetblog_postgresql_user:9o5DjKl19opBnRevmjZOJQvYcTjMVFKJ@dpg-ctratc23esus73bb34eg-a.oregon-postgres.render.com/gadgetblog_postgresql
 
 # Password validation
